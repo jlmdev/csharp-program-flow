@@ -8,13 +8,25 @@ namespace WiredBrainCoffeeSurveys.Reports
         static void Main(string[] args)
         {
             GenerateTasksReport();
+            GenerateCommentsReport();
+        }
 
+        private static void GenerateCommentsReport()
+        {
             for (int i = 0; i < Q1Results.Responses.Count; i++)
             {
                 var currentResponse = Q1Results.Responses[i];
                 if (currentResponse.WouldRecommend < 7.0)
                 {
                     Console.WriteLine(currentResponse.Comments);
+                }
+            }
+
+            foreach (var response in Q1Results.Responses)
+            {
+                if (response.AreaToImprove == Q1Results.AreaToImprove)
+                {
+                    Console.WriteLine(response.Comments);
                 }
             }
         }
